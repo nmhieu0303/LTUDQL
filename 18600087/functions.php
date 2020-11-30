@@ -41,10 +41,10 @@ function getCurrentUser(){
     return null;
 }
 
-function upload_avatar( $userId, $avatar){
+function upload_avatar(string $userId){
     global $db;
     $stmt = $db->prepare("UPDATE users SET avatar = ? WHERE id = ?");
-    $stmt->execute(array($avatar,$userId));
+    $stmt->execute(array($userId.'.jpg',$userId));
 }
 
 // ===================IMG============================

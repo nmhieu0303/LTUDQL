@@ -13,9 +13,9 @@ if(isset($_POST['content-post']) && isset($_FILES["img-post"])){
   exit();
 }
 ?>
-<?php if (!$currentUser) : include 'login.php'; ?>
+<?php include 'header.php'; ?>
 
-<?php else :  include 'header.php'; ?>
+<?php if ($currentUser) : ?>
 
   <div id="content">
     <div class="row positon-relative">

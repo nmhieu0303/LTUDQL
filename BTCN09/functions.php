@@ -45,11 +45,11 @@ function changePass($id, $password)
     }
 }
 
-function createUser($fullname, $username, $password, $email,$code)
+function createUser($fullname, $username, $password, $email, $code)
 {
     global $db;
     $stmt = $db->prepare("INSERT INTO users (fullname,username,password,email,activation) VALUES(?,?,?,?,?)");
-    $stmt->execute(array($fullname, $username, $password, $email,$code));
+    $stmt->execute(array($fullname, $username, $password, $email, $code));
     return findUserById($db->lastInsertId());
 }
 
@@ -61,11 +61,11 @@ function getCurrentUser()
     return null;
 }
 
-function upload_avatar(string $userId)
+function upload_avatar($userId, $avatar)
 {
     global $db;
     $stmt = $db->prepare("UPDATE users SET avatar = ? WHERE id = ?");
-    $stmt->execute(array($userId . '.jpg', $userId));
+    $stmt->execute(array($avatar, $userId));
 }
 
 // ===================IMG============================
@@ -139,8 +139,8 @@ function renderNews($post)
     $str = '<div class="newfeed__item">
         <div class="d-flex">
             <!-- Avatar -->
-            <a href="#" class="newfeed__item--img">
-                <img class="newfeed--avatar--img" src="./users/' . $post['userId'] . '.jpg" alt="">
+            <a href="#" class="newfeed__item--img"> 
+                <img class="newfeed--avatar--img" src="avatar.php?id=' . $post['userId'] . '" alt="">
             </a>
             <!-- Info post -->
             <div class="newfeed__item--info ml-3 flex-grow-1">
@@ -207,6 +207,8 @@ function sendMail($to, $subject, $content)
     // Instantiation and passing `true` enables exceptions
     $mail = new PHPMailer(true);
     try {
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->SMTPDebug = 2; //Alternative to above constant
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -232,8 +234,9 @@ function sendMail($to, $subject, $content)
     }
 }
 
-function activateUser($userId){
+function activateUser($userId)
+{
     global $db;
     $stmt = $db->prepare("UPDATE users SET activation = NULL WHERE id = ?");
-    $stmt->execute(array( $userId));
+    $stmt->execute(array($userId));
 }

@@ -1,0 +1,137 @@
+/* ========================  HEADER  ========================= */
+
+.btn-profile {
+    border: 2px solid #11c73b;
+}
+
+.btn-profile--img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+
+
+/* ========================  NEWFEED  ========================= */
+
+#newfeed {
+    margin-top: 3.5rem;
+}
+
+.newfeed__item {
+    width: 100%;
+    padding: 1.5rem;
+    background: var(--white);
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 9px 1px #6e6a6a8c;
+}
+
+.newfeed__item--media {
+    margin: 0 -1.5rem;
+}
+
+.newfeed--avatar--img {
+    width: 2.8rem;
+    height: 2.8rem;
+    border: 2px solid #11c73b;
+    border-radius: 50%;
+}
+
+#newfeed__post--input-text {
+    flex: 1;
+    resize: both;
+    padding-right: 3%;
+    margin-left: 1.2rem;
+    border: none;
+    outline: none;
+}
+
+.textarea {
+    display: block;
+    overflow: hidden;
+    height: auto;
+    min-height: 40px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+}
+
+.newfeed__post #img-input {
+    display: block;
+    margin: 0 auto;
+    max-height: 9rem;
+}
+
+.newfeed__post--attachment-item a {
+    color: #8fa0a3;
+    font-size: 1.8rem;
+    margin-right: 1.5rem;
+}
+
+.newfeed__item li {
+    list-style: none;
+}
+
+.newfeed__post--attachment-item #input-img {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+
+textarea {
+    border: ridge 2px;
+    padding: 5px;
+    width: 20em;
+    min-height: 5em;
+    overflow: auto;
+}
+
+#img-preview {
+    display: block;
+    margin: 0 auto;
+    max-height: 9rem;
+}
+
+
+/* ================= NEWS  ============================== */
+
+.newfeed__item--interactives {
+    display: flex;
+}
+
+.interactives__item {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.interactives__item--icon {
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.newfeed__item--caption {
+    word-break: break-all;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.newfeed__item .info--separator {
+    margin: 0 0.5rem;
+}
+
+
+/* =================== profile ====================================== */
+
+.avatar-box {
+    border: 2px solid #11c73b;
+    width: 250px;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: block;
+}

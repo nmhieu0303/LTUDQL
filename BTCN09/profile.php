@@ -7,11 +7,14 @@ repquireLoggedIn();
 $title = "Profile";
 if (isset($_FILES['avatar'])) {
   $file = $_FILES['avatar'];
-  $nameImg= $currentUser['id'].".jpg";
-  // $newImage = resizeImage($file['tmp_name'], 250, 250);
-  //imagejpeg($newImage, './users/' . $nameImg );
-  move_uploaded_file($file["tmp_name"], './users/'.$currentUser['id'].'.jpg');
-  upload_avatar($currentUser['id']);
+
+  $content =file_get_contents($file['tmp_name']);
+
+  // $nameImg= $currentUser['id'].".jpg";
+  // // $newImage = resizeImage($file['tmp_name'], 250, 250);
+  // //imagejpeg($newImage, './users/' . $nameImg );
+  // move_uploaded_file($file["tmp_name"], './users/'.$currentUser['id'].'.jpg');
+  upload_avatar($currentUser['id'], $content);
   repquireLoggedIn();
 }
 ?>
@@ -19,7 +22,8 @@ if (isset($_FILES['avatar'])) {
 
 <div class="d-flex justify-content-center">
   <div class="text-center">
-    <div class="avatar-box rounded-circle overflow-hidden m-auto" style="background-image: url(<?php echo './users/' . $currentUser['avatar'] ?>);">
+    <div class="avatar-box rounded-circle overflow-hidden m-auto" >
+      <img class = "w-100" src="avatar.php?id=<?php echo $currentUser['id'];?>" alt="">
     </div>
       <form method="post" enctype="multipart/form-data" action="profile.php">
         <div class="form-group ">
@@ -28,7 +32,6 @@ if (isset($_FILES['avatar'])) {
         </div>
         <button type="submit" class="btn btn-primary">Cập nhật</button>
       </form>
-    </div>
  
   <?php include 'footer.php'; ?>
 </div>

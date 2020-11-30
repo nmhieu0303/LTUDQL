@@ -2,8 +2,6 @@
 require_once 'init.php';
 // Xử lý logic ở đây
 repquireLoggedIn();
-
-
 $title = "Profile";
 if (isset($_FILES['avatar'])) {
   $file = $_FILES['avatar'];
