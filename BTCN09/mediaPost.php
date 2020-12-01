@@ -2,15 +2,13 @@
     require_once 'init.php';
 
     $id = $_GET['id'];
-    $user = findUserById($id);
-
-    if(!$user){
+    $post = findPostById($id);
+    if(!$post){
         http_response_code(404);
-        echo 'Avatar not found';
+        echo 'Media not found';
         return;
     }
 
     header('Content-Type: image/jpeg');
-    echo $user['avatar'];
+    echo $post['images'];
 ?>
-

@@ -114,7 +114,6 @@ textarea {
 }
 
 .newfeed__item--caption {
-    word-break: break-all;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
 }

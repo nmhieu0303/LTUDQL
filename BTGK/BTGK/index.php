@@ -5,16 +5,17 @@ $title = "Home";
 
 if(isset($_POST['content-post']) && isset($_FILES["img-post"])){
   $file = $_FILES["img-post"];
-  $img = file_get_contents($file['tmp_name']);
-  createNewPost($currentUser['id'],$_POST['content-post'],$img);
+  var_dump($file);
+  createNewPost($currentUser['id'],$_POST['content-post'],$file["name"]);
+  move_uploaded_file($file["tmp_name"], './post/'.$file["name"]);
   renderNewFeed();
   header('Location: index.php');
   exit();
 }
 ?>
-<?php if (!$currentUser) : include 'login.php'; ?>
+<?php include 'header.php'; ?>
 
-<?php else :  include 'header.php'; ?>
+<?php if ($currentUser) : ?>
 
   <div id="content">
     <div class="row positon-relative">

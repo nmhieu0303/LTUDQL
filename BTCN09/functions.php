@@ -124,7 +124,21 @@ function getPostsOfUser(int $userid)
     $stmt->execute(array($userid));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function findPostByID(int $postID)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM post WHERE id = ?");
+    $stmt->execute(array($postID));
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
+function getAllPost()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM post ORDER BY created DESC");
+    $stmt->execute(array());
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 function renderNewFeed()
 {
     global $posts;
@@ -135,7 +149,7 @@ function renderNewFeed()
 
 function renderNews($post)
 {
-    $elementImg = $post['images']  == NULL ? '' : '<img src="post/' . $post['images'] . '" alt="" class="newfeed__item--img w-100">';
+    $elementImg = $post['images']  == NULL ? '' : '<img src="mediaPost.php?id=' . $post['id'] . '"  alt="" class="newfeed__item--img w-100">';
     $str = '<div class="newfeed__item">
         <div class="d-flex">
             <!-- Avatar -->
@@ -173,19 +187,19 @@ function renderNews($post)
                 <div class="interactives__item--icon" onclick="like(this)">
                     <i class="far fa-heart"></i>
                 </div>
-                <span class="interactives__item--number">500</span>
+                <span class="interactives__item--number">0</span>
             </div>
             <div id="interactives__item--comment" class="interactives__item">
                 <a class="interactives__item--icon">
                     <i class="fas fa-comment-alt"></i>
                 </a>
-                <span class="interactives__item--number">500</span>
+                <span class="interactives__item--number">0</span>
             </div>
             <div id="interactives__item--share" class="interactives__item">
                 <a class="interactives__item--icon">
                     <i class="fas fa-share-alt"></i>
                 </a>
-                <span class="interactives__item--number">500</span>
+                <span class="interactives__item--number">0</span>
             </div>
         </div>
     
@@ -207,8 +221,6 @@ function sendMail($to, $subject, $content)
     // Instantiation and passing `true` enables exceptions
     $mail = new PHPMailer(true);
     try {
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-        $mail->SMTPDebug = 2; //Alternative to above constant
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication

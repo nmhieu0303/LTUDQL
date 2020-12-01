@@ -13,4 +13,3 @@
     header('Content-Type: image/jpeg');
     echo $user['avatar'];
 ?>
-

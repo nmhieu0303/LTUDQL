@@ -4,8 +4,7 @@
     <div class="d-flex mb-2">
         <!-- AVATAR IN BOX POST -->
         <a href="#" class="newfeed__item--img">
-            
-            <img class="newfeed--avatar--img" src="avatar.php?id=<?php echo $currentUser['id'];?>" alt="">
+            <img class="newfeed--avatar--img" src="<?php echo './users/'.$currentUser['avatar']?>" alt="">
         </a>
         <!-- INPUT TEXT -->
         <textarea  id="newfeed__post--input-text" class="textarea"  name="content-post" contenteditable placeholder="Hello <?php echo $currentUser['id']?>, how are you today?"></textarea>

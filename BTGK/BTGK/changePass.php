@@ -1,8 +1,11 @@
 <?php
 require_once 'init.php';
 // Xử lý logic ở đây
+$success = false;
 $title = "Change the password";
 if (isset($_POST['currentPass']) && isset($_POST['newPass']) && isset($_POST['newPassConfirm'])) {
+
+    
     $userId = $_SESSION['userId'];
     $userPassword = findUserById($userId)["password"];
     $oldPassword = $_POST['currentPass'];
@@ -14,26 +17,30 @@ if (isset($_POST['currentPass']) && isset($_POST['newPass']) && isset($_POST['ne
     } else if ($newPass != $newPassConfirm) {
         $error = 'Password confirm don\'t match!';
     } else {
-        $error = 'Success!';
+        $success = true;
         changePass($userId, password_hash($newPass, PASSWORD_DEFAULT));
         $_SESSION['userId'] = $userId;
         $_SESSION['password'] = password_hash($newPass, PASSWORD_DEFAULT);
+        $_SESSION['changePass'] = true;
+        exit(header('Location: changePass.php'));
     }
 }
 ?>
 <?php include 'header.php'; ?>
 
-
 <?php if (isset($error)) : ?>
     <!--Check error message -->
     <!--Show error message -->
-    <div class="alert alert-<?php if($error == 'Success!')echo 'success'; else echo 'danger'?>" role="alert">
+    <div class="alert alert-danger" role="alert">
         <?php echo $error; ?>
     </div>
     <!--Error analysis -->
     <?php include 'formChangePass.php'; ?>
+<?php elseif (isset($_SESSION['changePass'])) : ?>
+    <div class="alert alert-success" role="alert">Sucssec!!!</div>
+    <?php include 'formChangePass.php' ?>
 <?php else: ?>
-    <?php include 'formChangePass.php'; ?>
+    <?php include 'formChangePass.php' ?>
 <?php endif; ?>
 
 <?php include 'footer.php'; ?>

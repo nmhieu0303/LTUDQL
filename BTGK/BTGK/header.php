@@ -63,7 +63,7 @@
              </form>
              <?php if ($currentUser) : ?>
               <a href="profile.php" class="btn-profile rounded-circle ml-3">
-                <img  class="btn-profile--img " src="avatar.php?id=<?php echo $currentUser['id'];?>" alt="">
+               <img src="<?php echo './users/'.$currentUser["avatar"]?>" alt="" class="btn-profile--img">
              </a>
              <?php endif; ?>
 

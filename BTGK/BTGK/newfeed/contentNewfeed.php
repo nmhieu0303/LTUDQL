@@ -1,5 +1,5 @@
 <?php
-$posts = getAllPost();
+$posts = getPostsOfUser((int)$currentUser['id']);
 ?>
 
 <div class="content__newfeed w-75 m-auto ">
